@@ -1,14 +1,19 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import Menu from './Menu';
 
 export default class App extends React.Component {
     render() {
         return (
             <View>
-                <Text style={{ 
-                    fontSize: 55, 
-                    color: "#0000FF"
-                }}>Sonthaya Nongnuch</Text>
+                <Menu name="หน้าแรก" />
+                <View style={{ marginTop: 10 }}>
+                    <Text style={{ 
+                        fontSize: 24, 
+                        color: "#0000FF",
+                        textAlign: "center"
+                    }}>Sonthaya Nongnuch</Text>
+                </View>
             </View>
         );
     }
