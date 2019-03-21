@@ -5,7 +5,7 @@ export default class App extends React.Component {
     render() {
         return (
             <View>
-                <Text>Hello !</Text>
+                <Text style={{ fontSize: 55, color: "#FF0000"}}>Sonthaya Nongnuch</Text>
             </View>
         );
     }
