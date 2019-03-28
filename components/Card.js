@@ -29,8 +29,7 @@ export default class Card extends React.Component {
                 }}>
                     <View style={{ width: 100 }}>
                         <Button
-                            title="Buy now"
-                            color="#841584" />
+                            title="Buy now" />
                     </View>
                 </View>
             </View>
