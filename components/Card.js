@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
+import CardHeader from './CardHeader';
 
 export default class Card extends React.Component {
     render() {
@@ -11,7 +12,7 @@ export default class Card extends React.Component {
                 marginBottom: 30,
                 elevation: 4
             }}>
-                <Text>Hello</Text>
+                <CardHeader />
             </View>
         );
     }
