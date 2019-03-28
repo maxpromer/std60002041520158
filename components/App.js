@@ -7,7 +7,7 @@ export default class App extends React.Component {
     render() {
         return (
             <View>
-                <Header name="หน้าแรก" />
+                <Header name="อัลบั้ม" />
                 <View style={{ marginTop: 20 }}>
                     <Card />
                 </View>
