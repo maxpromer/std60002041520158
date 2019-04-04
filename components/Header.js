@@ -5,7 +5,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <View style={{ 
-                backgroundColor: "#FF0000", 
+                backgroundColor: "#F39C12", 
                 padding: 16, 
                 elevation: 5,
                 flexDirection: "row",
