@@ -1,8 +1,11 @@
+/*
 import React from 'react';
 import { View, Text } from 'react-native';
 import Header from './Header';
+*/
 // import Card from './Card';
 import Login from './Login';
+import Me from './Me';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 
@@ -20,35 +23,15 @@ export default class App extends React.Component {
     }
 }
 */
-/*
-export default class App extends React.Component {
-    constructor() {
-        super();
 
-        this.state = {
-            next: false
-        }
+const AppNavigator = createStackNavigator(
+    {
+        Login: Login,
+        Me: Me
+    }, {
+        // initialRouteName: "Login"
+        initialRouteName: "Me"
     }
+);
 
-    render() {
-        return (
-            <View>
-                <Header name="Login" />
-                this.state.next ? 
-                    <Login it_state={this.state} />
-                : <Login it_state={this.state} />
-            </View>
-        );
-    }
-}*/
-
-const MainNavigator = createStackNavigator({
-    Home: {
-        screen: Login
-    }
-});
-  
-  const App = createAppContainer(MainNavigator);
-  
-  export default App;
-                
+export default createAppContainer(AppNavigator);

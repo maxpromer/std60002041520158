@@ -7,10 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.2.2",
     "axios": "^0.18.0",
     "react": "16.8.3",
     "react-native": "0.59.0",
     "react-native-fit-image": "^1.5.4",
+    "react-native-gesture-handler": "^1.1.0",
     "react-navigation": "^3.6.1"
   },
   "devDependencies": {

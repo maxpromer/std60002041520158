@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, TextInput, Button, AsyncStorage } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
 let style = {
@@ -12,6 +13,14 @@ let style = {
 }
 
 export default class Login extends React.Component {
+    static navigationOptions = {
+        title: "Login",
+        headerStyle: {
+            backgroundColor: "#F39C12",
+        },
+        headerTintColor: "#FFF",
+    };
+    
     constructor() {
         super();
 
@@ -19,38 +28,50 @@ export default class Login extends React.Component {
             email: "",
             password: "" 
         };
+    }
 
-        this.goLogin = function() {
-            axios.post("http://128.199.240.120:9999/api/auth/login", {
-                email: this.state.email,
-                password: this.state.password
-            }).then(async function (response) {
-                alert("Logined !");
+    async componentDidMount() {
+        try {
+            if (await AsyncStorage.getItem("login_token") !== null) {
+                this.props.navigation.navigate("Me");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-                console.log(response.data.data.token);
-                try {
-                    await AsyncStorage.setItem("login_token", response.data.data.token);
-                } catch (error) {
-                    alert("Save token error !");
-                }
-            })
-            .catch(function (error) {
-                alert("Login fail !")
-            });
-        }.bind(this);
+    goLogin() {
+        axios.post("http://128.199.240.120:9999/api/auth/login", {
+            email: this.state.email,
+            password: this.state.password
+        }).then(async function (response) {
+            // alert("Logined !");
+
+            console.log(response.data.data.token);
+            try {
+                await AsyncStorage.setItem("login_token", response.data.data.token);
+            } catch (error) {
+                alert("Save token error !");
+
+                return;
+            }
+
+            this.props.navigation.navigate("Me");
+        }.bind(this))
+        .catch(function (error) {
+            alert("Login fail !");
+
+            console.log(error);
+        });
     }
 
     render() {
-        const {navigate} = this.props.navigation;
-        
         return (
             <View style={{ paddingTop: 20 }}>
                 <Text style={{ textAlign: "center", fontSize: 28, color: "#F39C12" }}>Login Form</Text>
                 <View style={{ padding: 20 }}>
                     <TextInput
                         placeholder="Email"
-                        autoComplete="email"
-                        autoFocus
                         onChangeText={(text) => this.setState({ email: text })}
                         value={this.state.email}
                         style={style.input}
@@ -64,7 +85,7 @@ export default class Login extends React.Component {
                         secureTextEntry
                     />
 
-                    <Button title="Login" onPress={this.goLogin} />
+                    <Button title="Login" onPress={this.goLogin.bind(this)} />
                 </View>
             </View>
         );
