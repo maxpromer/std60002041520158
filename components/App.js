@@ -24,14 +24,12 @@ export default class App extends React.Component {
 }
 */
 
-const AppNavigator = createStackNavigator(
-    {
-        Login: Login,
-        Me: Me
-    }, {
-        // initialRouteName: "Login"
-        initialRouteName: "Me"
-    }
-);
+const AppNavigator = createStackNavigator({
+    Login: Login,
+    Me: Me
+}, {
+    // initialRouteName: "Login"
+    initialRouteName: "Me"
+});
 
 export default createAppContainer(AppNavigator);
