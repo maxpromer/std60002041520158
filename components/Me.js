@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
@@ -32,7 +32,7 @@ export default class Me extends React.Component {
                 if (value !== null) {
                     token = value;
                 } else {
-                    alert("กรุณาเข้าสู่ระบบก่อน");
+                    // alert("กรุณาเข้าสู่ระบบก่อน");
                     this.setState({ loading: false });
 
                     this.props.navigation.navigate("Login");
@@ -40,7 +40,7 @@ export default class Me extends React.Component {
                     return;
                 }
             } catch (error) {
-                console.error(error);
+                // console.error(error);
 
                 this.setState({ loading: false });
                 return;
@@ -53,7 +53,7 @@ export default class Me extends React.Component {
             }).then(function (response) {
                 // alert("Get OK !");
 
-                console.log(response);
+                // console.log(response);
 
                 this.setState({ 
                     email: response.data.data.email, 
@@ -62,7 +62,7 @@ export default class Me extends React.Component {
 
                 this.setState({ loading: false });
             }.bind(this)).catch(function (error) {
-                console.log(error);
+                // console.log(error);
 
                 alert("Get fail !");
                 this.setState({ loading: false });
@@ -91,8 +91,16 @@ export default class Me extends React.Component {
 
                 <Button title="Logout" onPress={this.logout.bind(this)} />
             </View> : 
-            <View style={{ padding: 20 }}>
-                <Text style={{ textAlign: "center", fontSize: 18 }}>Loading...</Text>
+            <View style={{ 
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                alignItems: "center", 
+                justifyContent: "center" 
+            }}>
+                <ActivityIndicator size="large" color="#F39C12" />
             </View>
         );
     }

@@ -10,6 +10,7 @@ export default class Login extends React.Component {
             backgroundColor: "#F39C12",
         },
         headerTintColor: "#FFF",
+        headerLeft: null,
     };
     
     constructor() {
@@ -27,7 +28,7 @@ export default class Login extends React.Component {
                 this.props.navigation.navigate("Me");
             }
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     }
 
@@ -38,7 +39,7 @@ export default class Login extends React.Component {
         }).then(async function (response) {
             // alert("Logined !");
 
-            console.log(response.data.data.token);
+            // console.log(response.data.data.token);
             try {
                 await AsyncStorage.setItem("login_token", response.data.data.token);
             } catch (error) {
@@ -52,7 +53,7 @@ export default class Login extends React.Component {
         .catch(function (error) {
             alert("Login fail !");
 
-            console.log(error);
+            // console.log(error);
         });
     }
 
